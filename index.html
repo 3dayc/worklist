@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width">
+<title>작업현황판 | HappyCar </title>
+<style type="text/css">
+	* {margin:0; padding:0;}
+	html {overflow-y:scroll;}
+	body {background:#fff; min-width:1024px; color:#000; font:12px/1.4 'Malgun Gothic', Tahoma, Sans-serif;}
+	a {color:#27e; text-decoration:none;}
+	a:focus, a:hover, a:active {text-decoration:underline;}
+	del {display:block;color:#999;}
+	.guide-header {width:100%; position:relative; background:lightseagreen; box-shadow:0 2px 5px 0 #999;color:#fff; font:12px/1.5 'Malgun Gothic', Tahoma, Sans-serif;}
+	.guide-header h1 {padding:.2em; color:#f2f2f2; font-size:24px;}
+	.guide-header h1 strong {font-size:16px;}
+	.guide-header .nav {list-style:none; background:#588f47; border-top:1px solid #164577; padding:.5em .5em .4em; color:#f9f9f9; font-weight:bold; font-size:16px;}
+	.guide-header .nav li {display:inline-block; margin-right:.5em; color:#f2f2f2;}
+	.guide-header .nav li a {color:#f2f2f2;}
+	.guide-header .nav li .on {color:#fff !important; text-shadow:#333 1px 1px 2px; text-decoration:underline;}
+	.guide-header .nav li strong {font-size:120%;}
+	.guide-header .nav li:before {content:'•'; font-weight:normal; font-size:14px; margin-right:.7em;}
+	.guide-header .nav li:first-child:before {content:none !important; margin:0 !important;}
+	.guide-header .nav.nav-subtype {background:#2d5785; font-size:14px;}
+	.guide-header .nav.nav-subtype li:before {content:'|';}
+	.guide-header .navgroup {position:relative;}
+	.guide-header .nav-r {position:absolute; right:0; bottom:8px; margin-top:0; list-style:none; font-weight:bold; font-size:14px;}
+	.guide-header .nav-r li {display:inline; margin-right:0.5em;}
+	.guide-header .nav-r li:before {content:'|'; margin-right:10px; color:#f2f2f2; font-weight:normal;}
+	.guide-header .nav-r li:first-child:before {display:none;}
+	.guide-header .nav-r li a {color:#f2f2f2;}
+	.guide-header .nav-r li a:before {content:'→';}
+	.rule {background:#eeeff3; margin:0 0 2em; padding:1em; color:#4d4d4d;}
+	.rule dt {margin-bottom:.3em; font-size:13px; font-weight:bold;}
+	.rule dd {padding-left:.5em; line-height:1.8;}
+	.rule dd ul {list-style-type:square; margin-left:1.2em;}
+
+	.guideLink {background:#fff;margin:0 0 2em; padding:1em;}
+	.guideLink dt {margin-bottom:.3em; font-size:13px; font-weight:bold;}
+	.guideLink dd {line-height:1.8;}
+	.guideLink ul {overflow:hidden;}
+	.guideLink ul li {float:left;list-style:none;}
+	.guideLink ul li + li {padding-left:8px;}
+	.guideLink ul li a {text-decoration: none;display:inline-block;background-color:#dedede;padding:0 5px;color:#000;}
+
+	.title-topsection {margin:1em .8em .3em; font-size:24px; color:#2d5785;}
+	.title-topsection:before {content:'[';}
+	.title-topsection:after {content:']';}
+	.total {margin:1em 1em .5em; padding-left:.3em; font-weight:bold; font-size:14px;}
+	.total .per {font-size:12px;}
+	.guide-body {padding-bottom:1em;}
+	.section {margin:0 1em;}
+	.section + .section {margin-bottom:1em;}
+	.section .title {margin:0; padding:.6em; background:#2d5785; color:#fff; font-weight:bold; font-size:14px; position:relative; margin-top:-1px; *zoom:1; cursor:pointer;}
+	.section .title-toggle {margin:0; padding:.6em; background:#d9dce3; position:relative; *zoom:1;}
+	.section .title-toggle .togglebtn {padding:2px 5px; margin:0; background:#9f7952; border:0; border-radius:3px; color:#fff; font:bold 12px/1.5 'Malgun Gothic', Tahoma, Sans-serif; cursor:pointer;}
+	.section .title.title-depth2 {background:#8c959d; border:0; margin-top:0; cursor:default;}
+	.section table {width:100%; border-collapse:collapse; border-spacing:0; border:0;}
+	.section table caption {display:none;}
+	.section table th, table td {padding:0.8em; border:1px solid #ccc;}
+	.section table th {color:#333; background:#eeeff3; font-size:11px; text-align:center;}
+	.section table td {text-align:center;}
+	.section table td em {color:#c52126;}
+	.section table td.tit {color:#333; font-weight:bold;}
+	.section table td.file {color:#d4d4d4 !important;}
+	.section table td.file a.img {color:#ff8e1f !important;}
+	.section table td.date {text-align:center; font-style:italic; white-space:nowrap;}
+	.section table td.date del {display:block; color:#aaa !important;}
+	.section table td.name,
+	.section table td.stat {text-align:center;}
+	.section table td.desc, .section table td.note, .section table td.history {font-style:italic; color:#666;}
+	.section table td.author {text-align:center; white-space:nowrap;}
+	.section table td ul {list-style:none; margin:0; padding:0; font-style:italic;}
+	.section table td ul li {margin:2px 0;}
+	.section table tr.tr-bgtype2 td {background:#f4f4f4; color:#666;}
+	.section table tr:hover td {background:#eeeff3;}
+	.section table tr.tr-bgtype3 td {background:#fdfce6; color:#666;}
+	.section table tr.tr-bgtype4 td {background:#fde6e9; color:#666;}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+	jQuery.fn.stat = function (options) {
+		var settings = jQuery.extend({
+				total: '.total',
+				toggleBtn: '.togglebtn',
+				title: 'h2.title',
+				content: 'div.content',
+				files: 'tbody tr:not(.tr-bgtype2)',
+				stat: 'td.stat',
+				completed: '●',
+				index: 0,
+				openAll: true
+			}, options),
+			all_sections = this;
+
+		return this.each(function () {
+			var self = this,
+				$self = $(self),
+				title_text = [],
+				completed = 0;
+			self.section_title = $(settings.title, $self);
+			self.content = $(settings.content, $self);
+			self.files = $(settings.files, $self);
+			self.files.each(function () {
+				var stat = $(settings.stat, this);
+				stat.each(function () {
+					var text = $(this).text();
+					if (text && (text === settings.completed)) {
+						completed++;
+					}
+				});
+			});
+			title_text = [self.section_title.text(), ' (',completed,'/',self.files.length,')'];
+			self.section_title.text(title_text.join(''));
+			self.section_title.click(function() {
+				self.content.slideToggle('fast');
+			});
+			$(settings.toggleBtn).text('전체닫기').toggle(function() {
+				$(settings.toggleBtn).text('전체열기');
+				$(settings.content).hide();
+			}, function() {
+				$(settings.toggleBtn).text('전체닫기');
+				$(settings.content).show();
+			});
+
+			//total
+			var completedAll = 0;
+			$(settings.files).each(function () {
+				var stat = $(settings.stat, this);
+				stat.each(function () {
+					var text = $(this).text();
+					if (text && (text === settings.completed)) {
+						completedAll++;
+					}
+				});
+			});
+			$(settings.total).html('Total : '+completedAll+'/'+$(settings.files).length+'pages <span class="per">(진행율 '+Math.round(completedAll/$(settings.files).length*100)+'%)</span>');
+
+		});
+	};
+
+	$(document).ready(function() {
+		$('div.section').stat();
+	});
+</script>
+</head>
+<body>
+<div class="guide-header">
+	<h1>:: HappyCar(APP)<strong> &gt; FILE LIST</strong></h1>
+</div>
+<dl class="rule">
+	<dt>작업현황판 작성 규칙</dt>
+	<dd>
+		<ul>
+			<li>상태표기 :  '△'(작업중대기) , '○'(부분완료) , '●'(완료) 중 알맞은 것으로 표기. <span style="text-decoration:underline;">'●'(완료) 표기부터 개발작업 가능.</span></li>
+			<li>날짜의 형식은 yyyy-mm-dd 으로 하며, HTML 파일 내용이 수정되었을 경우, 최초작성일('●'(완료)일 기준)은 남겨두고 옆에 마지막 수정일자를 표기함. (예) <del>2013-04-26</del> 2013-05-16)</li>
+			<li>'description'란은 화면에 대한 추가적인 설명, 'note'란은 작업자들 간에 서로 알 수 있는 메모(notice)를 기재함.</li>
+		</ul>
+	</dd>
+</dl>
+<div class="guide-body">
+	<p class="total">Total : 0/0pages <span class="per">(진행율 00%)</span></p>
+	<div class="section">
+		<div class="title-toggle"><button type="button" class="togglebtn">전체닫기</button></div>
+	</div>
+
+	<!-- 대표 -->
+	<div class="section">
+		<h2 class="title" style="background:lightseagreen;color:#ffffff;">HappyCar(APP)</h2>
+		<div class="content">
+			<table border="1">
+				<thead>
+					<tr>
+						<th scope="col" style="width:12%;">1depth</th>
+						<th scope="col" style="width:4%;">2depth</th>
+						<th scope="col" style="width:20%;">3depth</th>
+						<th scope="col" style="width:2%;">4depth</th>
+						<th scope="col" style="width:2%;">5depth</th>
+						<th scope="col" style="width:6%;">path</th>
+						<th scope="col" style="width:10%;">file(link)</th>
+						<th scope="col" style="width:4%;" title="△ :대기 / ○ :부분완료 / ● :완료">state</th>
+						<th scope="col" style="width:6%;" title="작업자이름">name</th>
+						<th scope="col" style="width:8%;" title="yyyy-mm-dd">date</th>
+						<th scope="col" style="width:15%;">description</th>
+						<th scope="col">note</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="tit" rowspan="12">앱첫실행</td>
+						<td>1</td>
+						<td><del>알림 수신 동의 팝업</del></td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href=""><del>ACC_POP_01</del></a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date"></td>
+						<td class="desc"></td>
+						<td class="note"><em>취소</em></td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>앱 안내</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/ACC_01.html">ACC_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>위치정보 동의 팝업</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/ACC_POP_02.html">ACC_POP_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>행복카 위치 정보 동의 시</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/ACC_02.html">ACC_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>비로그인 팝업</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/ACC_LOG_POP_01.html">ACC_LOG_POP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td rowspan="3">6</td>
+						<td>현재위치로 찾기 없음</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/ACC_02_CAS_01.html">ACC_02_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>위치동의후_검색결과</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/ACC_02_CAS_02.html">ACC_02_CAS_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>위치동의후_검색결과없음</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/ACC_02_CAS_03.html">ACC_02_CAS_03</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td rowspan="3">7</td>
+						<td>주소검색</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/ACC_02_CAS_04.html">ACC_02_CAS_04</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/08</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td><del>주소검색결과</del></td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href=""><del>ACC_02_CAS_05</del></a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date"></td>
+						<td class="desc"></td>
+						<td class="note"><em>취소</em></td>
+					</tr>
+					<tr>
+						<td><del>주소입력</del></td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href=""><del>ACC_02_CAS_06</del></a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date"></td>
+						<td class="desc"></td>
+						<td class="note"><em>취소</em></td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>주소입력완료</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/ACC_02_CAS_07.html">ACC_02_CAS_07</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/13</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="10">홈</td>
+						<td rowspan="5">9</td>
+						<td>메인(단지 설정 후 첫화면)</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_01.html">HOM_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>메인_지도보기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_01_CAS_01.html">HOM_01_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>메인_내단지변경</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_01_CAS_02.html">HOM_01_CAS_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>메인_스크롤</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_01_CAS_03.html">HOM_01_CAS_03</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>메인_지도선택안됨</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_01_CAS_04.html">HOM_01_CAS_04</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>차종추천검색, 검색 결과</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_01_REC_01.html">HOM_01_REC_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/30</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>11</td>
+						<td>차종추천검색, 검색 결과</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_01_REC_02.html">HOM_01_REC_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/30</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>12</td>
+						<td>결제 금액 확인</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/PAY_01_CAS_01.html">PAY_01_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/30</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>13</td>
+						<td><del>타임팝업02</del></td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href=""><del>HOM_01_timepopup02</del></a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date"></td>
+						<td class="desc"></td>
+						<td class="note"><em>취소</em></td>
+					</tr>
+					<tr>
+						<td>14</td>
+						<td><del>타임팝업01</del></td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href=""><del>HOM_01_timepopup01</del></a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date"></td>
+						<td class="desc"></td>
+						<td class="note"><em>취소</em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="7">로그인</td>
+						<td>15</td>
+						<td>로그인(A)</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/LOG_01.html">LOG_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>16</td>
+						<td>휴대폰 번호 인증</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/COM_CER_01.html">COM_CER_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>17</td>
+						<td>기존 아이디 찾기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/LOG_SER_ID_01.html">LOG_SER_ID_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>18</td>
+						<td>기존 아이디 찾기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/LOG_SER_ID_02.html">LOG_SER_ID_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td rowspan="2">19</td>
+						<td>비밀번호 찾기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/LOG_SER_PW_01.html">LOG_SER_PW_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>비밀번호 찾기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/LOG_SER_PW_02.html">LOG_SER_PW_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>20</td>
+						<td>휴면 해제</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/LOG_POP_01.html">LOG_POP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/28</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="7">회원가입</td>
+						<td>21</td>
+						<td>약관동의</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MEM_01.html">MEM_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>22</td>
+						<td>약관동의 상세 팝업</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MEM_01_POP_01.html">MEM_01_POP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>23</td>
+						<td>회원 정보 입력</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MEM_02.html">MEM_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>24</td>
+						<td>우편번호 찾기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MEM_02_POP_01.html">MEM_02_POP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>25</td>
+						<td>회원가입 완료</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MEM_03.html">MEM_03</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>26</td>
+						<td>단지 주소 입력</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MEM_04.html">MEM_04</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/28</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>27</td>
+						<td>관계 확인</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MEM_05.html">MEM_05</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/28</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="4">운전면허,카드등록</td>
+						<td>28</td>
+						<td>운전면허 정보 입력_직접입력</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/LIC_02_CAS_01.html">LIC_02_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/29</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>29</td>
+						<td>카드등록 알림</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/CAD_01.html">CAD_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/28</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>30</td>
+						<td>직접 입력 시 (개인카드/법인개인)</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/CAD_02_CAS_01.html">CAD_02_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/29</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>31</td>
+						<td>등록완료</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/CAD_03.html">CAD_03</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/29</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="4">예약하기</td>
+						<td>32</td>
+						<td>예약하기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/RES_01.html">RES_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/13</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>33</td>
+						<td>결제금액 확인</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/PAY_01.html">PAY_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/04</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>34</td>
+						<td>할인혜택 팝업</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/PAY_01_POP_01.html">PAY_01_POP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/04</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>35</td>
+						<td>금액 확인 팝업</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/PAY_01_POP_02.html">PAY_01_POP_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/04</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="11">예약하기_스마트키</td>
+						<td>36</td>
+						<td>(예약 완료 후) 스마트 키 화면 (OFF)</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_01.html">SMT_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/05</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td rowspan="5">37</td>
+						<td>스마트 키 화면 (ON)</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_02.html">SMT_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>스마트 키 화면 (ON)_사고접수</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_02_POP_01.html">SMT_02_POP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/05</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>스마트 키 화면 (ON)_접수후</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_02_CAS_01.html">SMT_02_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/05</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>스마트 키 화면 (ON)_qr</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_02_CAS_03.html">SMT_02_CAS_03</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/05</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>스마트 키 화면 (ON)_접기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_02_CAS_04.html">SMT_02_CAS_04</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/05</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>38</td>
+						<td>사고사진등록 _ 완료</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_02_PIC_03.html">SMT_02_PIC_03</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>39</td>
+						<td>예약 시간 변경하기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_POP_02_RES_CHN_01.html">SMT_POP_02_RES_CHN_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/05</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td rowspan="3">40</td>
+						<td>예약시간 당기기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_POP_02_RES_FOW_01.html">SMT_POP_02_RES_FOW_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/05</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>반납 시간 연장하기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_POP_02_RET_EXT_01.html">SMT_POP_02_RET_EXT_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/05</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>조기 반납하기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_POP_02_RET_EAR_01.html">SMT_POP_02_RET_EAR_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/05</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="2">동반운전자등록</td>
+						<td>41</td>
+						<td><del>동반운전자등록</del></td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href=""><del>SMT_POP_05</del></a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date"></td>
+						<td class="desc"></td>
+						<td class="note"><em>취소</em></td>
+					</tr>
+					<tr>
+						<td>42</td>
+						<td>바로타기-자동차</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DIR_CAR_01.html">DIR_CAR_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/13</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">QR코드 직접입력</td>
+						<td>43</td>
+						<td>바로타기-코드입력</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DIR_02.html">DIR_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/13</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="3">드로우어메뉴</td>
+						<td>44</td>
+						<td>드로우어메뉴_로그인후</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_01.html">DRW_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>45</td>
+						<td>알림목록 로그인 후</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/NEW_01.html">NEW_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/13</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>46</td>
+						<td>알림상세</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/NEW_DET_01.html">NEW_DET_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/13</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="10">마이페이지</td>
+						<td>47</td>
+						<td>마이페이지</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_01.html">MYP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/21</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>48</td>
+						<td>내정보수정</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_EDT_01.html">MYP_EDT_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/06</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>49</td>
+						<td>멤버십 안내</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_MEM_01.html">MYP_MEM_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>50</td>
+						<td>멤버십 안내 등급별 혜택</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_MEM_02.html">MYP_MEM_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/06</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>51</td>
+						<td>내 단지 추가</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_ZON_ADD_01_CAS_01.html">MYP_ZON_ADD_01_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/08</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>52</td>
+						<td>내 포인트 적립 내역</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_POT_01.html">MYP_POT_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/08</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>53</td>
+						<td>운전면허 확인</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_LIC_01.html">MYP_LIC_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/06</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>54</td>
+						<td>결제수단</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_PAY_01.html">MYP_PAY_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/06</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>55</td>
+						<td>카드키 - 티머니</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_TMO_01.html">MYP_TMO_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/06</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>56</td>
+						<td>계정연동</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_ACT_01.html">MYP_ACT_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/08</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="2">매너지수</td>
+						<td>57</td>
+						<td>매너지수</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_MAN_01.html">MYP_MAN_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/06</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>58</td>
+						<td>매너지수 안내</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_MAN_POP_01.html">MYP_MAN_POP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/06</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="3">안전운전지수</td>
+						<td>59</td>
+						<td>안전운전지수</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_DRV_01.html">MYP_DRV_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/21</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>60</td>
+						<td>내 안전운전지수 점수</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_DRV_DET_01.html">MYP_DRV_DET_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/21</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>61</td>
+						<td>안전운전지수 행복카 챌린지</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_DRV_CHA_01.html">MYP_DRV_CHA_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/08</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">회원탈퇴</td>
+						<td>62</td>
+						<td>회원탈퇴</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MYP_QUT_01.html">MYP_QUT_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/06</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">이용내역-드로우어메뉴2</td>
+						<td>63</td>
+						<td>이용내역</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_01.html">DRW_USE_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/07</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="4">반납하기</td>
+						<td>64</td>
+						<td>자동차 반납하기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_RET_01.html">DRW_RET_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/07</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td rowspan="3">65</td>
+						<td>반납 완료 - 정시각 반납</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_RET_02.html">DRW_RET_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/07</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>반납 완료 - 조기 반납</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_RET_02_CAS_01.html">DRW_RET_02_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/07</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>반납 완료 - 지연 반납</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_RET_02_CAS_02.html">DRW_RET_02_CAS_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/07</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="3">쿠폰</td>
+						<td>66</td>
+						<td>쿠폰 - 전체 쿠폰 목록</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_COU_01.html">DRW_COU_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/07</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>67</td>
+						<td>쿠폰 - 전체 쿠폰 목록 - 디테일</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_COU_DET_01.html">DRW_COU_DET_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/07</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>68</td>
+						<td>쿠폰 - 쿠폰 등록</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_COU_03.html">DRW_COU_03</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/08</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="16">앱 이용방법</td>
+						<td>69</td>
+						<td>이용안내 > 앱 이용방법</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_01.html">DRW_USE_APP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/08</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td rowspan="15">70</td>
+						<td>이용안내 > 앱 이용방법 > 회원가입 - 단지설정</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_MEM_01.html">DRW_USE_APP_MEM_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/08</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 회원가입 - 관계확인</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_MEM_02.html">DRW_USE_APP_MEM_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/08</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 회원가입 - 예약시간 차량 선택</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_RSV_01.html">DRW_USE_APP_RSV_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/08</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 예약하기 - 예약내용확인</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_RSV_02.html">DRW_USE_APP_RSV_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/12</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 예약하기 - 결제하기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_RSV_03.html">DRW_USE_APP_RSV_03</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/12</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 바로타기 - 바로타기 버튼 선택</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_DIR_01.html">DRW_USE_APP_DIR_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 바로타기 - QR찍기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_DIR_02.html">DRW_USE_APP_DIR_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 바로타기 - 차량이용시간 확인</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_DIR_03.html">DRW_USE_APP_DIR_03</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 스마트키 - 01스마트키 - 차량제어</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_SMT_01.html">DRW_USE_APP_SMT_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 스마트키 - 매너등록</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_SMT_02.html">DRW_USE_APP_SMT_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 스마트키 - 차량상태등록</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_SMT_03.html">DRW_USE_APP_SMT_03</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 반납하기 - 차량상태체크</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_RET_01.html">DRW_USE_APP_RET_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 사고접수 - 사고접수 버튼</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_REP_01.html">DRW_USE_APP_REP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 사고접수 - 사진등록</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_REP_02.html">DRW_USE_APP_REP_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>이용안내 > 앱 이용방법 > 사고접수 - 사고접수 현황</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_APP_REP_03.html">DRW_USE_APP_REP_03</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="2">요금안내</td>
+						<td>71</td>
+						<td>이용안내 > 요금안내 > 행복카 이용요금</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_FEE_01.html">DRW_USE_FEE_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/12</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>72</td>
+						<td>이용안내 > 요금안내 > 행복카 이용요금</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_FEE_HAP_01.html">DRW_USE_FEE_HAP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/12</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">보험안내</td>
+						<td>73</td>
+						<td>이용안내 > 보험안내</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_INS_01.html">DRW_USE_INS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/15</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">약관</td>
+						<td>74</td>
+						<td>이용안내 > 약관</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_TER_01.html">DRW_USE_TER_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">행복카 에티켓</td>
+						<td>75</td>
+						<td>이용안내 > 행복카 에티켓</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_ETC_01.html">DRW_USE_ETC_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">행복카 패널티</td>
+						<td>76</td>
+						<td>이용안내 > 행복카 패널티</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_USE_PEN_01.html">DRW_USE_PEN_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/15</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="2">요금계산기</td>
+						<td>77</td>
+						<td>요금계산기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_CAL_01.html">DRW_CAL_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/12</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>78</td>
+						<td>계산 결과</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_CAL_DET_01.html">DRW_CAL_DET_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit" rowspan="9">고객센터</td>
+						<td rowspan="2">79</td>
+						<td>고객센터>문의내역 목록</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_CUS_QUE_01.html">DRW_CUS_QUE_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/12</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>고객센터>문의내역 상세</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_CUS_QUE_DET_01.html">DRW_CUS_QUE_DET_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/12</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td rowspan="3">80</td>
+						<td>고객센터> FAQ 목록</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_CUS_FAQ_01.html">DRW_CUS_FAQ_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>고객센터> FAQ 상세</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_CUS_FAQ_CAS_01.html">DRW_CUS_FAQ_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>고객센터> FAQ 검색시</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_CUS_FAQ_CAS_02.html">DRW_CUS_FAQ_CAS_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>81</td>
+						<td>고객센터> 1:1문의하기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_CUS_11_01.html">DRW_CUS_1:1_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td rowspan="2">82</td>
+						<td>고객센터>사고접수/현황 - 미운행중일 경우</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_CUS_REP_01.html">DRW_CUS_REP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>고객센터>사고접수/현황 - 운행중일 경우</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_CUS_REP_CAS_01.html">DRW_CUS_REP_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td>83</td>
+						<td>고객센터>사고접수/현황 사고처리현황</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_CUS_REP_02.html">DRW_CUS_REP_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">설정</td>
+						<td>84</td>
+						<td>로그인 설정 - 수신해제</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_SET_01.html">DRW_SET_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+
+					<tr>
+						<td class="tit">차량정보01(커뮤니티)</td>
+						<td>-</td>
+						<td>차량정보01(커뮤니티)</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_01_CAR_COM_01.html">HOM_01_CAR_COM_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/14</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">차량정보01(공지펼침)</td>
+						<td>-</td>
+						<td>차량정보01(공지펼침)</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_01_CAR_COM_02.html">HOM_01_CAR_COM_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">차량정보02(옵션정보)</td>
+						<td>-</td>
+						<td>차량정보02(옵션정보)</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_01_CAR_OPT_01.html">HOM_01_CAR_OPT_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">차량정보03(차량사용법)</td>
+						<td>-</td>
+						<td>차량정보03(차량사용법)</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_01_CAR_USE_01.html">HOM_01_CAR_USE_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">로그인팝업</td>
+						<td>-</td>
+						<td>로그인팝업</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/HOM_POP_01.html">HOM_POP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/11</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">로그인 _ 기존 회원아이디 로그인</td>
+						<td>-</td>
+						<td>로그인 _ 기존 회원아이디 로그인</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/LOG_02.html">LOG_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">휴대폰 인증</td>
+						<td>-</td>
+						<td>휴대폰 인증</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/COM_CER_01.html">COM_CER_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">휴대폰 인증</td>
+						<td>-</td>
+						<td>휴대폰 인증</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/COM_CER_01_CAS_01.html">COM_CER_01_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">회원 정보 입력 완료</td>
+						<td>-</td>
+						<td>회원 정보 입력 완료</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/MEM_02_CAS_01.html">MEM_02_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/18</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">운전면허 확인</td>
+						<td>-</td>
+						<td>운전면허 확인</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/LIC_02.html">LIC_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/29</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">카드 등록(개인)</td>
+						<td>-</td>
+						<td>카드 등록(개인)</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/CAD_02.html">CAD_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/29</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">예약 시간</td>
+						<td>-</td>
+						<td>예약 시간</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/SMT_POP_02.html">SMT_POP_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/05</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">자동차반납하기</td>
+						<td>-</td>
+						<td>자동차반납하기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_RET_01_CAS_01.html">DRW_RET_01_CAS_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/07</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">자동차반납하기</td>
+						<td>-</td>
+						<td>자동차반납하기</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/DRW_RET_01_CAS_02.html">DRW_RET_01_CAS_02</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">21/01/07</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">주소검색</td>
+						<td>-</td>
+						<td>주소검색</td>
+						<td></td>
+						<td></td>
+						<td>/source/</td>
+						<td class="file"><a target="_blank" href="source/html/ACC_02_CAS_04_01.html">ACC_02_CAS_04_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- //대표 -->
+	<!-- Admin -->
+	<div class="section">
+		<h2 class="title" style="background:lightseagreen;color:#ffffff;">HappyCar Operation(WEB)</h2>
+		<div class="content">
+			<table border="1">
+				<thead>
+					<tr>
+						<th scope="col" style="width:12%;">1depth</th>
+						<th scope="col" style="width:4%;">2depth</th>
+						<th scope="col" style="width:20%;">3depth</th>
+						<th scope="col" style="width:2%;">4depth</th>
+						<th scope="col" style="width:2%;">5depth</th>
+						<th scope="col" style="width:6%;">path</th>
+						<th scope="col" style="width:10%;">file(link)</th>
+						<th scope="col" style="width:4%;" title="△ :대기 / ○ :부분완료 / ● :완료">state</th>
+						<th scope="col" style="width:6%;" title="작업자이름">name</th>
+						<th scope="col" style="width:8%;" title="yyyy-mm-dd">date</th>
+						<th scope="col" style="width:15%;">description</th>
+						<th scope="col">note</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="tit">회원관리 > 전체회원 > 정회원</td>
+						<td>-</td>
+						<td>회원관리 > 전체회원 > 정회원</td>
+						<td></td>
+						<td></td>
+						<td>/source_admin/</td>
+						<td class="file"><a target="_blank" href="source_admin/html/MEM_MEM_01.html">MEM_MEM_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+					<tr>
+						<td class="tit">서비스관제 > 차량예약 현황 > 회원정보팝업 > 상세정보</td>
+						<td>-</td>
+						<td>서비스관제 > 차량예약 현황 > 회원정보팝업 > 상세정보</td>
+						<td></td>
+						<td></td>
+						<td>/source_admin/</td>
+						<td class="file"><a target="_blank" href="source_admin/html/COM_MEM_POP_01.html">COM_MEM_POP_01</a></td>
+						<td class="stat">●</td>
+						<td class="name"></td>
+						<td class="date">20/12/24</td>
+						<td class="desc"></td>
+						<td class="note"><em></em></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- //Admin -->
+</div></body></html>
