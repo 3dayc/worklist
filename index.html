@@ -76,7 +76,7 @@
 	.section table tr.tr-bgtype3 td {background:#fdfce6; color:#666;}
 	.section table tr.tr-bgtype4 td {background:#fde6e9; color:#666;}
 </style>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
 	jQuery.fn.stat = function (options) {
 		var settings = jQuery.extend({
@@ -141,6 +141,43 @@
 	$(document).ready(function() {
 		$('div.section').stat();
 	});
+</script> -->
+<script type="text/javascript">
+	window.onload = function() {
+		const allTitle = document.getElementsByClassName("title-toggle");
+		const title = document.getElementsByClassName("title");
+		const contents = document.getElementsByClassName("content");
+		let allContentState = false;
+		allToggleFn = () => {
+			if(allContentState) {
+				for(let i=0; i<contents.length; i++) {
+					contents[i].style.display = "none";
+				}
+				allTitle[0].firstChild.innerText = "전체열기";
+				allContentState = false;
+			} else {
+				for(let i=0; i<contents.length; i++) {
+					contents[i].style.display = "block";
+				}
+				allTitle[0].firstChild.innerText = "전체닫기";
+				allContentState = true;
+			}
+		}
+		toggleFn = (num) => {
+			if(contents[num].style.display === "none") {
+				contents[num].style.display = "block";
+			} else {
+				contents[num].style.display = "none";
+			}
+			if(contents[0].style.display === "none" && contents[1].style.display === "none") {
+				allTitle[0].firstChild.innerText = "전체열기";
+				allContentState = false;
+			} else if(contents[0].style.display === "block" && contents[1].style.display === "block") {
+				allTitle[0].firstChild.innerText = "전체닫기";
+				allContentState = true;
+			}
+		}
+	}
 </script>
 </head>
 <body>
@@ -160,13 +197,13 @@
 <div class="guide-body">
 	<p class="total">Total : 0/0pages <span class="per">(진행율 00%)</span></p>
 	<div class="section">
-		<div class="title-toggle"><button type="button" class="togglebtn">전체닫기</button></div>
+		<div class="title-toggle" onclick="allToggleFn()"><button type="button" class="togglebtn">전체열기</button></div>
 	</div>
 
 	<!-- 대표 -->
 	<div class="section">
-		<h2 class="title" style="background:lightseagreen;color:#ffffff;">HappyCar(APP)</h2>
-		<div class="content">
+		<h2 class="title" style="background:lightseagreen;color:#ffffff;" onclick="toggleFn(0)">HappyCar(APP)</h2>
+		<div class="content" style="display: none;">
 			<table border="1">
 				<thead>
 					<tr>
@@ -1941,8 +1978,8 @@
 	<!-- //대표 -->
 	<!-- Admin -->
 	<div class="section">
-		<h2 class="title" style="background:lightseagreen;color:#ffffff;">HappyCar Operation(WEB)</h2>
-		<div class="content">
+		<h2 class="title" style="background:lightseagreen;color:#ffffff;" onclick="toggleFn(1)">HappyCar Operation(WEB)</h2>
+		<div class="content" style="display: none;">
 			<table border="1">
 				<thead>
 					<tr>
